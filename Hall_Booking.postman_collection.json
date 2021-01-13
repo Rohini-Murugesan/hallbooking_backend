@@ -1,0 +1,163 @@
+{
+	"info": {
+		"_postman_id": "4cf2002e-4f79-4ee6-9a04-92303a3c5814",
+		"name": "Hall_Booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Room_Name\":\"Room_8\",\r\n    \"Amenities\":[\"Water\",\"Restaurant\"],\r\n    \"Number_Of_Persons_Allowed\":50,\r\n    \"One_Hour_Price\":\"3000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/createroom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"createroom"
+					]
+				},
+				"description": "This API is used to create a room. It receives the Room Detais like the Amenities and price of the hall"
+			},
+			"response": []
+		},
+		{
+			"name": "Book Room",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Customer_Name\":\"Rohini Murugesn\",\r\n    \"Date\":\"2020-06-23\",\r\n    \"Start_Time\":\"12:00:00\",\r\n    \"End_Time\":\"13:00:00\",\r\n    \"Room_Name\":\"Room_100\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/bookroom",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"bookroom"
+					]
+				},
+				"description": "This API is used to book any Hall. It gets the start and the end date in the format - YYYY-MM-DD"
+			},
+			"response": []
+		},
+		{
+			"name": "All Room Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/roomdetails",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"roomdetails"
+					]
+				},
+				"description": "This API will return all the rooms that are created in the application"
+			},
+			"response": []
+		},
+		{
+			"name": "Booked Customer Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/booked-customer-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"booked-customer-details"
+					]
+				},
+				"description": "This API is used to display all the customer details who have booked the hall"
+			},
+			"response": []
+		},
+		{
+			"name": "Booked Room Details",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/booked-room-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"booked-room-details"
+					]
+				},
+				"description": "This API is used to get all the Booked Room Details"
+			},
+			"response": []
+		}
+	]
+}
