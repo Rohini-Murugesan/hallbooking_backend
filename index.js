@@ -40,6 +40,42 @@ app.post("/createroom", async (request, response) => {
     }
 });
 
+
+app.post("/bookroom", async (request, response) => {
+    try {
+        let client = await mongoClient.connect(dburl);
+        let db = client.db("Hall_Booking");
+        requiredKeys = ["Customer_Name", "Date", "Start_Time","End_Time","Room_Name"];
+        Keys = Object.keys(request.body)
+        if (requiredKeys.every((key) => Keys.includes(key)) && (Keys.length === requiredKeys.length)) {
+            let isPresent = await db.collection("Booking_Details").findOne(
+                { "Room_Name": request.body.Room_Name,
+                "Date": new Date(request.body.Date)
+                 });
+            if (isPresent) {
+                response.status(406).json({ "msg": "Room already booke for the given date/time" })
+            }else{
+                request.body.Date = new Date()
+                // request.body.Start_Time = 
+                let result = await db.collection("Booking_Details").insertOne(request.body);
+                if (result) {
+                    response.status(202).json({ "msg": "Room is booked successfully" });
+                } else {
+                    response.status(406).json({ "msg": "Room booking failed" })
+                }
+            }
+        }
+        else {
+            response.status(406).json({ "msg": "Required Details not found" })
+        }
+    }
+    catch (err) {
+        console.info("ERROR : ", err);
+        response.sendStatus(500);
+    }
+});
+
+
 app.get("/roomdetails", async (request, response) => {
     try {
         let client = await mongoClient.connect(dburl);
@@ -52,6 +88,8 @@ app.get("/roomdetails", async (request, response) => {
         response.sendStatus(500);
     }
 });
+
+
 
 
 app.listen(port, () => {
