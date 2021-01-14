@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(cors());
 // const bcrypt = require("bcryptjs");
 const mongoClient = mongodb.MongoClient;
-const port = 3000 || process.env.PORT;
+const port = process.env.PORT || 3000;
 const dburl = process.env.DB_URL || "mongodb://127.0.0.1:27017/"; // local db url
 
 app.post("/createroom", async (request, response) => {
